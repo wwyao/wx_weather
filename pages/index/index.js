@@ -46,13 +46,13 @@ Page({
     }
     //
     if(that.data.locationImageId == id){
-      getLocationAndWeather(that);
+      this.getLocationAndWeather(that);
      }
   },
 
   onLoad: function () {
     var page = this;
-    getLocationAndWeather(page);
+    this.getLocationAndWeather(page);
     util.getDate(function(data){
         page.setData({
               ldate:data
@@ -63,10 +63,9 @@ Page({
               week:data
             }); 
     });
-  }
-})
-//获取当前位置和该位置的天气情况
-function getLocationAndWeather(object){
+  },
+  //获取当前位置和该位置的天气情况
+ getLocationAndWeather:function (object){
   util.getLocaton(function(latitude,longitude){
        util.getWeatherData(latitude+':'+longitude,function(data){
           data.now.temperature = data.now.temperature + '℃';
@@ -89,3 +88,4 @@ function getLocationAndWeather(object){
       });
     });
 }
+})
